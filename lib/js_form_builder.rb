@@ -94,7 +94,7 @@ class JsFormBuilder < ActionView::Helpers::FormBuilder
     # 3. field name by hash value
     def build_label
       field_label = field_options[:label]
-      translated = object_reference.human_name_attribute(field_options[:field_name])
+      translated = object_reference.human_attribute_name(field_options[:field_name])
       if field_label
         return field_options[:label]
       elsif translated
