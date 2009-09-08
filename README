@@ -7,8 +7,61 @@ Introduction goes here.
 Example
 =======
 
-Example goes here.
+Rails => 
+<% js_form_for :user, @user do |f| %>
+	<%= f.text_field :email %>
+	<%= f.text_field :name %>
+	<%= f.password_field :password %>
+	<%= f.submit_or_cancel %>
+<% end %>
 
+HTML => 
+<form action="/" class="vertical" method="post">
+  <div class="row required">
+    <div class="label">
+      <label for="user_email">Email</label>
+      <em>required</em></div>
+    <div class="input">
+      <div class="text_field">
+        <input id="user_email" name="user[email]" size="30" type="text" />
+      </div>
+    </div>
+  </div>
+  <div class="row required">
+    <div class="label">
+      <label for="user_name">Navn</label>
+      <em>required</em></div>
+    <div class="input">
+      <div class="text_field">
+        <input id="user_name" name="user[name]" size="30" type="text" />
+      </div>
+    </div>
+  </div>
+  <div class="row required">
+    <div class="label">
+      <label for="user_password">Adgangskode</label>
+      <em>required</em></div>
+    <div class="input">
+      <div class="password_field">
+        <input id="user_password" name="user[password]" size="30" type="password" />
+      </div>
+    </div>
+  </div>
+  <div class="submit">
+    <div class="submit_or_cancel">
+      <input id="user_submit" name="commit" type="submit" value="Save changes" />
+      or <a href="/">Cancel</a></div>
+  </div>
+</form>
+
+
+The form builder handles translation as follows.
+
+1. first it search for :label hash key.
+f.text_field :name, :label => "Name"
+2. it then tries to find inside locales
+Class.human_attribute_name(method_name)
+3. last it use the method_name :name and convert it to string.
 
 Install
 =======
@@ -17,5 +70,10 @@ First, to get the required options to work with the validations, you need to ins
 
 1. ruby script/plugin install git://github.com/redinger/validation_reflection.git
 
+Next you just need to obtain the plugin itself.
 
-Copyright (c) 2009 [name of plugin creator], released under the MIT license
+2. ruby script/plugin install git://github.com/jamalsoueidan/js_formbuilder.git
+
+That's it :)
+
+Copyright (c) 2009 Jamal Soueidan, released under the MIT license
