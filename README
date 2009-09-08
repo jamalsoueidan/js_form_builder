@@ -1,0 +1,21 @@
+JsFormbuilder
+=============
+
+Introduction goes here.
+
+
+Example
+=======
+
+Example goes here.
+
+
+Install
+=======
+
+First, to get the required options to work with the validations, you need to install validation_reflection plugin which add two methods reflect_on_all_validations and reflect_on_validations_for(:property) to the ActionRecord objects.
+
+1. ruby script/plugin install git://github.com/redinger/validation_reflection.git
+
+
+Copyright (c) 2009 [name of plugin creator], released under the MIT license
