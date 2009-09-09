@@ -1,8 +1,8 @@
 class SubmitOrCancel < InputBaseClass
   def build
     submit_tag = template.submit_tag(submit_value, :id => builder.object_name.to_s + "_submit")
-    cancel_link = template.link_to(cancel_label, cancel_link)
-    both = content_tag(:div, submit_tag + " or " + cancel_link, :class => "submit_or_cancel")
+    cancel_tag = template.link_to(cancel_label, cancel_link)
+    both = content_tag(:div, submit_tag + " or " + cancel_tag, :class => "submit_or_cancel")
     content_tag(:div, both, :class => "submit")
   end
   
