@@ -1,7 +1,5 @@
-# JsFormbuilder
 class JsFormBuilder < ActionView::Helpers::FormBuilder
-    
-  #http://tomek.codequest.eu/2008/12/28/how-to-write-a-custom-form-builder-in-rails/
+
   %w[text_field text_area password_field check_box submit].each do |method_name| 
     define_method(method_name) do |field_name, *args|
        options = args.extract_options!
