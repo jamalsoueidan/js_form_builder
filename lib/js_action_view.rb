@@ -3,10 +3,11 @@ module JsActionView
     options = args.extract_options!
     options = filter_align(options)
     options = default_show_requirements(options)
+    options = choose_style(options)
     
-    #concat('<div class="' + options[:align].to_s + '">')
+    concat('<div class="' + form_style(options) + '">')
       form_for(record_or_name_or_array, *(args << options.merge(:builder => JsFormBuilder)), &proc);
-    #concat('</div>')
+    concat('</div>')
    end
    
    def cancel_link(value="Cancel", options={})
@@ -35,5 +36,16 @@ module JsActionView
         options[:show_requirements] = true
       end
       return options
+    end
+    
+    def choose_style(options)
+      if options[:style].nil?
+        options[:style] = "default"
+      end
+      return options
+    end
+    
+    def form_style(options)
+      options[:align].to_s + ' ' + options[:style]
     end
 end
