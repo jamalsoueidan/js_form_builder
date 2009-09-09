@@ -3,12 +3,11 @@ JsFormbuilder
 
 Introduction goes here.
 
-
 Example
 =======
 
 Rails => 
-<% js_form_for :user, @user do |f| %>
+<% js_form_for :user, @user, :align => "vertical" do |f| %>
 	<%= f.text_field :email %>
 	<%= f.text_field :name %>
 	<%= f.password_field :password %>
@@ -74,6 +73,13 @@ Next you just need to obtain the plugin itself.
 
 2. ruby script/plugin install git://github.com/jamalsoueidan/js_formbuilder.git
 
+You also need the stylesheet file form.css
+
+3. rake js_formbuilder:install
+
+Then open your layout file and put this code in the header.
+
+<%= stylesheet_link_tag "form" %>
 That's it :)
 
 Copyright (c) 2009 Jamal Soueidan, released under the MIT license
