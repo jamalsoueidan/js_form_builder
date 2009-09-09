@@ -16,15 +16,17 @@ class InputBaseClass
     end
   
     def is_required?
-      return false if builder.options[:show_requirements] == false
-      if object_reference && object_reference.respond_to?(:reflect_on_validations_for)
-        object_reference.reflect_on_validations_for(input_name).map(&:macro).include?(:validates_presence_of)
+      if show_requirements?
+        # small fix to password_confirmation
+        if object_reference && object_reference.respond_to?(:reflect_on_validations_for)
+          object_reference.reflect_on_validations_for(is_required_input_name).map(&:macro).include?(:validates_presence_of)
+        end
       end
     end
 
     def has_errors?
       if builder.object
-        builder.object.errors.invalid?(input_name)
+        builder.object.errors.invalid?(is_required_input_name)
       end
     end
   
@@ -62,6 +64,14 @@ class InputBaseClass
       content = put_notice_if_text_exists(content)
       content_tag(:div, content, :class => "input")
     end
+    
+    def object_reference
+      Object.const_get(builder.object_name.to_s.titleize)
+    end
+    
+    def show_requirements?
+      builder.options[:show_requirements]
+    end
   
   # ------------------------------------------------------------------------ #
   # PRIVATE PRIVATE PRIVATE #
@@ -90,7 +100,8 @@ class InputBaseClass
       return content
     end
     
-    def object_reference
-      Object.const_get(builder.object_name.to_s.titleize)
+    def is_required_input_name
+      return :password if input_name.to_s == "password_confirmation"
+      return input_name
     end
 end
