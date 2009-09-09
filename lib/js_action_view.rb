@@ -33,7 +33,7 @@ module JsActionView
     
     def default_show_requirements(options)
       if options[:show_requirements].nil?
-        options[:show_requirements] = true
+        options[:show_requirements] = false
       end
       return options
     end
