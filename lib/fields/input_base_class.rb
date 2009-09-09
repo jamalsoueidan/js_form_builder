@@ -16,7 +16,7 @@ class InputBaseClass
     end
   
     def is_required?
-      return false if options[:show_requirements] == false
+      return false if builder.options[:show_requirements] == false
       if object_reference && object_reference.respond_to?(:reflect_on_validations_for)
         object_reference.reflect_on_validations_for(input_name).map(&:macro).include?(:validates_presence_of)
       end
