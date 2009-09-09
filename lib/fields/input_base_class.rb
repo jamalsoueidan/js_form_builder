@@ -44,6 +44,8 @@ class InputBaseClass
     def label_text
       if options_label
         return options_label
+      elsif active_record_label
+        return active_record_label
       else
         input_name
       end
@@ -57,7 +59,8 @@ class InputBaseClass
   
     def input_object
       content = content_tag(:div, input_tag, :class => input_name)
-      return put_notice_if_text_exists(content)
+      content = put_notice_if_text_exists(content)
+      content_tag(:div, content, :class => "input")
     end
   
   # ------------------------------------------------------------------------ #
