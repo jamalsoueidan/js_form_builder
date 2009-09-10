@@ -3,6 +3,9 @@ JsFormbuilder
 
 Keep it simple :)
 
+I included validation_reflection plugin inside the formbuilder.
+http://rubyforge.org/projects/valirefl/validation_reflection/trunk
+
 Example
 =======
 
@@ -65,21 +68,16 @@ Class.human_attribute_name(method_name)
 Install
 =======
 
-First, to get the required options to work with the validations, you need to install validation_reflection plugin which add two methods reflect_on_all_validations and reflect_on_validations_for(:property) to the ActionRecord objects.
+1. ruby script/plugin install git://github.com/jamalsoueidan/js_formbuilder.git
 
-1. ruby script/plugin install git://github.com/redinger/validation_reflection.git
+Then you need the stylesheet file form.css
 
-Next you just need to obtain the plugin itself.
+2. rake js_formbuilder:install
 
-2. ruby script/plugin install git://github.com/jamalsoueidan/js_formbuilder.git
-
-You also need the stylesheet file form.css
-
-3. rake js_formbuilder:install
-
-Then open your layout file and put this code in the header.
+3. Then open your layout file and put this code in the header.
 
 <%= stylesheet_link_tag "form" %>
+
 That's it :)
 
 Copyright (c) 2009 Jamal Soueidan, released under the MIT license
