@@ -62,7 +62,7 @@ class InputBaseClass
     def input_object
       content = content_tag(:div, input_tag, :class => input_name)
       content = put_notice_if_text_exists(content)
-      content_tag(:div, content, :class => "input")
+      content_tag(:div, content, :class => "input") 
     end
     
     def object_reference
