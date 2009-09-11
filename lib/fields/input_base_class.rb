@@ -16,12 +16,16 @@ class InputBaseClass
     end
   
     def is_required?
+      required = false
       if show_requirements?
-        # small fix to password_confirmation
         if object_reference && object_reference.respond_to?(:reflect_on_validations_for)
-          object_reference.reflect_on_validations_for(is_required_input_name).map(&:macro).include?(:validates_presence_of)
+          required = object_reference.reflect_on_validations_for(is_required_input_name).map(&:macro).include?(:validates_presence_of)
         end
       end
+      
+      # must not be nil, either false or true.
+      required = options[:required] unless options[:required].nil?
+      return required
     end
 
     def has_errors?
@@ -55,13 +59,15 @@ class InputBaseClass
     
     def label_object
       content = builder.label(input_name, label_text)
-      content = put_required_if_required_is_true(content)
+      content = if_required_option_is_declared(content)
+      content = if_after_label_option_is_declared(content)
       content_tag(:div, content, :class => "label")
     end
   
     def input_object
       content = content_tag(:div, input_tag, :class => input_name)
-      content = put_notice_if_text_exists(content)
+      content = if_notice_option_is_declared(content)
+      content = if_show_error_after_field_is_declared(content)
       content_tag(:div, content, :class => "input") 
     end
     
@@ -86,16 +92,30 @@ class InputBaseClass
       options[:label]
     end
     
-    def put_notice_if_text_exists(content)
+    def if_notice_option_is_declared(content)
       if options[:notice]
         content += content_tag(:div, options[:notice], :class => "notice")
       end
       return content
     end
     
-    def put_required_if_required_is_true(content)
+    def if_after_label_option_is_declared(content)
+      if options[:after_label]
+        content += content_tag(:span, options[:after_label], :class => "after_label")
+      end
+      return content
+    end
+    
+    def if_required_option_is_declared(content)
       if is_required?
          content += ' <em>required</em>'
+      end
+      return content
+    end
+    
+    def if_show_error_after_field_is_declared(content)
+      if has_errors?
+        content += content_tag(:span, label_text + " " + builder.object.errors.on(is_required_input_name), :class => "show_error_after_field")
       end
       return content
     end
