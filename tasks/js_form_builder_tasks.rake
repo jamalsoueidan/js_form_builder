@@ -1,4 +1,4 @@
-#namespace :js_formbuilder do
+#namespace :js_form_builder do
 #  desc "Copies all the stylesheet files to your public/stylesheets folder"
 #  task :install  do
 #    plugin_root = RAILS_ROOT + "/vendor/plugins/js_formbuilder"

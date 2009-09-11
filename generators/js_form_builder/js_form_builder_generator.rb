@@ -1,4 +1,4 @@
-class JsFormbuilderGenerator < Rails::Generator::Base
+class JsFormBuilderGenerator < Rails::Generator::Base
   def manifest
     record do |m|
       m.file "assets/form.css", "public/stylesheets/form.css"
