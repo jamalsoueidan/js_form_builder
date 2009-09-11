@@ -3,8 +3,12 @@ JsFormbuilder
 
 Keep it simple :)
 
-I included validation_reflection plugin inside the formbuilder.
+I included validation_reflection plugin inside my plugin.
 http://rubyforge.org/projects/valirefl/validation_reflection/trunk
+
+
+
+
 
 Example
 =======
@@ -57,24 +61,37 @@ HTML =>
 </form>
 
 
+
+
+
+Translation
+===========
+
 The form builder handles translation as follows.
 
-1. first it search for :label hash key.
+1. It checks if :label option is not nil.
 f.text_field :name, :label => "Name"
-2. it then tries to find inside locales
-Class.human_attribute_name(method_name)
-3. last it use the method_name :name and convert it to string.
+
+2. Then it tries to find the locale translation.
+Class.human_attribute_name(:name)
+
+3. Last it just converts :name to string
+
+
+
+
 
 Install
 =======
 
-1. ruby script/plugin install git://github.com/jamalsoueidan/js_formbuilder.git
+You need to install the plugin:
+ruby script/plugin install git://github.com/jamalsoueidan/js_formbuilder.git
 
-Then you need the stylesheet file form.css
 
-2. rake js_formbuilder:install
+Then if you want to, you can auto-generate the form.css file by:
+ruby script/generate js_formbuilder
 
-3. Then open your layout file and put this code in the header.
+Now the form.css is available for you.
 
 <%= stylesheet_link_tag "form" %>
 
