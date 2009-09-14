@@ -1,6 +1,6 @@
 class InputBaseClass 
   
-  attr_accessor :options, :template, :builder, :input_name, :input_tag
+  attr_accessor :options, :template, :builder, :input_name, :input_tag, :method_name
   
   def build
     raise "an error" rescue "You must override build method in your subclass"
@@ -35,7 +35,7 @@ class InputBaseClass
     end
   
     def input_style
-      style = 'row '
+      style = 'row'
       if is_required?
         style += ' required'
       end
@@ -43,6 +43,8 @@ class InputBaseClass
       if has_errors?
         style += ' error'
       end
+      
+      style += ' ' + method_name
     
       return style
     end
