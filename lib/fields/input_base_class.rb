@@ -50,7 +50,7 @@ class InputBaseClass
     end
   
     def label_text
-      if options_label
+      if use_label_option_as_text?
         return options_label
       elsif active_record_label
         return active_record_label
@@ -60,7 +60,7 @@ class InputBaseClass
     end
     
     def label_object
-      content = builder.label(input_name, label_text)
+      content = content_tag(:label, label_text, :for => input_name)
       content = if_required_option_is_declared(content)
       content = if_after_label_option_is_declared(content)
       content_tag(:div, content, :class => "label")
@@ -88,6 +88,14 @@ class InputBaseClass
   private
     def active_record_label
       object_reference.human_attribute_name(input_name)
+    end
+    
+    def use_label_option_as_text?
+      if options[:label].nil?
+        false
+      else
+        true
+      end
     end
     
     def options_label
