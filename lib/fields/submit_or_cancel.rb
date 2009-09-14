@@ -26,6 +26,6 @@ class SubmitOrCancel < InputBaseClass
       if options[:cancel]
         return options[:cancel][:url]
       end
-      return "/"
+      return :back
     end
 end
