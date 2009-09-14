@@ -1,6 +1,6 @@
 class JsFormBuilder < ActionView::Helpers::FormBuilder
 
-  %w[text_field text_area password_field check_box].each do |method_name| 
+  %w[text_field text_area password_field check_box select].each do |method_name| 
     define_method(method_name) do |field_name, *args|
        options = args.extract_options!
        initializeObject(method_name, options, field_name, super).build
@@ -25,6 +25,7 @@ class JsFormBuilder < ActionView::Helpers::FormBuilder
       instance.builder = self
       instance.template = @template
       instance.options = options
+      instance.method_name = method_name
       instance.input_name = input_name
       if input_tag
         instance.input_tag = input_tag
