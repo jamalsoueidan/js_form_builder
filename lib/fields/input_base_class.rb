@@ -60,10 +60,13 @@ class InputBaseClass
     end
     
     def label_object
-      content = content_tag(:label, label_text, :for => input_name)
-      content = if_required_option_is_declared(content)
-      content = if_after_label_option_is_declared(content)
-      content_tag(:div, content, :class => "label")
+      if create_label?
+        content = content_tag(:label, label_text, :for => input_name)
+        content = if_required_option_is_declared(content)
+        content = if_after_label_option_is_declared(content)
+        return content_tag(:div, content, :class => "label")
+      end
+      return ""
     end
   
     def input_object
@@ -100,6 +103,14 @@ class InputBaseClass
     
     def options_label
       options[:label]
+    end
+    
+    def create_label?
+      if options[:label] == false
+        false
+      else
+        true
+      end
     end
     
     def if_notice_option_is_declared(content)
