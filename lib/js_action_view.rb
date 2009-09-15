@@ -16,12 +16,8 @@ module JsActionView
    
    private
     def filter_align(options)
-      if options[:html].nil?
-        options[:html] = {}
-        if options[:html][:class].nil?
-          options[:html][:class] = ""
-        end
-      end
+      options[:html] ||= {}
+      options[:html][:class] ||= ""
 
       if options[:align]
         options[:html][:class] += options[:align].to_s
