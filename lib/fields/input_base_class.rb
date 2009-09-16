@@ -61,7 +61,7 @@ class InputBaseClass
     
     def label_object
       if create_label?
-        content = content_tag(:label, label_text, :for => input_name)
+        content = content_tag(:label, label_text, :for => input_name.to_s)
         content = if_required_option_is_declared(content)
         content = if_after_label_option_is_declared(content)
         return content_tag(:div, content, :class => "label")
@@ -139,6 +139,10 @@ class InputBaseClass
         content += content_tag(:span, label_text + " " + builder.object.errors.on(is_required_input_name), :class => "show_error_after_field")
       end
       return content
+    end
+    
+    def has_object?
+      builder.object ? true : false
     end
     
     def is_required_input_name
