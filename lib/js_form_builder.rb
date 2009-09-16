@@ -19,6 +19,12 @@ class JsFormBuilder < ActionView::Helpers::FormBuilder
     initializeObject("submit", options, "submit").build
   end
   
+  def check_boxes(field_name, object, options={})
+    instance = initializeObject("check_boxes", options, field_name)
+    instance.model = object
+    instance.build
+  end
+  
   private
     def initializeObject(method_name, options, input_name, input_tag = nil)
       instance = Object.const_get(method_name.gsub('_', ' ').titleize.gsub(' ', '')).new
