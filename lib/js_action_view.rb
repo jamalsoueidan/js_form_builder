@@ -42,6 +42,10 @@ module JsActionView
     end
     
     def form_style(options)
-      options[:align].to_s + ' ' + options[:style]
+      css_style = options[:style]
+      if options[:align]
+        css_style += options[:align].to_s
+      end
+      css_style
     end
 end

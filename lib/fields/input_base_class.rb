@@ -44,7 +44,7 @@ class InputBaseClass
         style += ' error'
       end
       
-      style += ' ' + method_name
+      style += ' ' + method_name.to_s
     
       return style
     end
