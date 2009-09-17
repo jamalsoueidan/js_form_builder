@@ -7,14 +7,14 @@ class CheckBoxes < InputBaseClass
     
     model.each do |m|
       id_tag = input_name.to_s + "_" + m[1].to_s
-      content = template.check_box_tag(builder.object_name.to_s + "[users][]", m[1].to_s, includes_selections?(m[1]), :id => id_tag, :onchange => options[:onchange])
+      content = template.check_box_tag(builder.object_name.to_s + "[" + input_name.to_s + "][]", m[1].to_s, includes_selections?(m[1]), :id => id_tag, :onchange => options[:onchange])
       content += content_tag(:label, m[0], :for => id_tag, :style => "cursor:pointer")
       @input_tag += content_tag(:div, content, :class => "check_box")
     end
     
     content = label_object
     content += input_object
-    content_tag(:div, content, :class => "row check_boxes")
+    content_tag(:div, content, :class => input_style)
   end
   
   private
