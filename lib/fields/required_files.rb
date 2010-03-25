@@ -2,6 +2,7 @@ path = File.dirname(__FILE__)
 require path + '/input_base_class'
 require path + '/check_box'
 require path + '/check_boxes'
+require path + '/file_field'
 require path + '/text_area'
 require path + '/text_field'
 require path + '/select'

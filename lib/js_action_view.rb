@@ -10,6 +10,17 @@ module JsActionView
     concat('</div>')
    end
    
+   def js_remote_form_for(record_or_name_or_array, *args, &proc)
+     options = args.extract_options!
+     options = filter_align(options)
+     options = default_show_requirements(options)
+     options = choose_style(options)
+
+     concat('<div class="' + form_style(options) + '">')
+       remote_form_for(record_or_name_or_array, *(args << options.merge(:builder => JsFormBuilder)), &proc);
+     concat('</div>')
+    end
+   
    def cancel_link(value="Cancel", options={})
      link_to(value, "/", options)
    end
