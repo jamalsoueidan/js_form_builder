@@ -1,6 +1,6 @@
 class JsFormBuilder < ActionView::Helpers::FormBuilder
 
-  %w[text_field text_area password_field check_box select].each do |method_name| 
+  %w[text_field text_area password_field check_box select file_field].each do |method_name| 
     define_method(method_name) do |field_name, *args|
        options = args.extract_options!
        initializeObject(method_name, options, field_name, super).build
