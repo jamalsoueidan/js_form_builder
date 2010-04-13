@@ -74,6 +74,8 @@ class InputBaseClass
       content = if_notice_option_is_declared(content)
       content = if_show_error_after_field_is_declared(content)
       content_tag(:div, content, :class => "input") 
+      content = if_after_field_option_is_declared(content)
+      return content
     end
     
     def object_reference
@@ -123,6 +125,13 @@ class InputBaseClass
     def if_after_label_option_is_declared(content)
       if options[:after_label]
         content += content_tag(:span, options[:after_label], :class => "after_label")
+      end
+      return content
+    end
+    
+    def if_after_field_option_is_declared(content)
+      if options[:after_field]
+        content += content_tag(:span, options[:after_field], :class => "after_field")
       end
       return content
     end
